@@ -20,7 +20,7 @@ const ComputerScene = () => {
   // Debug: Log available nodes (remove after confirming setup)
   useEffect(() => {
     console.log('Available nodes:', Object.keys(nodes))
-    console.log('Laptop mesh:', nodes['Laptop_Export_.003_0'])
+    console.log('Laptop mesh:', nodes['Laptop_Export_003_0'])
   }, [nodes])
 
   return (
