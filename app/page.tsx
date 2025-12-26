@@ -11,8 +11,7 @@ export default function PortfolioPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 8000) // Exactly 8 seconds
-    
+    }, 8000)
     return () => clearTimeout(timer)
   }, [])
 
@@ -21,32 +20,30 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div className="relative w-full bg-black text-[#4ade80] font-mono selection:bg-[#4ade80] selection:text-black">
+    <div className="relative w-full bg-black text-[#4ade80] font-mono selection:bg-[#4ade80] selection:text-black min-h-screen">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-50 bg-black/50 backdrop-blur-md border-b border-[#4ade80]/10">
+      <nav className="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-50 bg-black/70 backdrop-blur-md border-b border-[#4ade80]/20">
         <span className="text-xs md:text-sm tracking-tighter">TANISH JAGTAP // 2025</span>
         <div className="flex gap-4 md:gap-8 text-xs md:text-sm uppercase tracking-widest">
-          <a href="#about" className="hover:text-white transition-colors">About</a>
-          <a href="#work" className="hover:text-white transition-colors">Work</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+          <a href="#about" className="hover:text-[#4ade80] transition-colors">About</a>
+          <a href="#work" className="hover:text-[#4ade80] transition-colors">Work</a>
+          <a href="#contact" className="hover:text-[#4ade80] transition-colors">Contact</a>
         </div>
       </nav>
 
-      {/* Hero Terminal Section - WITH GRID PATTERN */}
+      {/* Hero Terminal Section */}
       <section className="relative h-screen pt-20 flex items-center justify-center overflow-hidden bg-black">
-        {/* GRID PATTERN - Behind terminal */}
-        <div className="absolute inset-0 terminal-grid opacity-40 pointer-events-none z-0" />
-        <div className="absolute inset-0 bg-radial-gradient(circle_at_center,transparent_0%,black_100%) pointer-events-none z-5" />
+        <div className="absolute inset-0 terminal-grid opacity-30 pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/50 to-transparent z-5 pointer-events-none" />
         
-        {/* TERMINAL - Higher z-index */}
-        <div className="relative z-10 w-full flex items-center justify-center px-4 md:px-20">
+        <div className="relative z-10 w-[90vw] md:w-[70vw] max-w-4xl h-[70vh] flex items-center justify-center p-4 md:p-8">
           <RetroTerminal />
         </div>
       </section>
 
-      <main className="relative">
-        {/* About Section */}
-        <section id="about" className="min-h-screen px-6 py-24 md:px-24 flex flex-col justify-center border-t border-[#4ade80]/10">
+      <main>
+        {/* About */}
+        <section id="about" className="min-h-screen px-6 py-24 md:px-24 flex flex-col justify-center border-t border-[#4ade80]/20 bg-black/50 backdrop-blur-sm">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -56,14 +53,13 @@ export default function PortfolioPage() {
           >
             <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tighter text-glow">I build digital experiences.</h2>
             <p className="text-xl md:text-2xl text-[#4ade80]/80 leading-relaxed max-w-2xl">
-              Focused on bridging the gap between design and technology. I create immersive, performance-driven
-              applications that live on the edge of innovation.
+              Focused on bridging the gap between design and technology. I create immersive, performance-driven applications.
             </p>
           </motion.div>
         </section>
 
-        {/* Projects Section */}
-        <section id="work" className="min-h-screen px-6 py-24 md:px-24 border-t border-[#4ade80]/10">
+        {/* Projects */}
+        <section id="work" className="min-h-screen px-6 py-24 md:px-24 border-t border-[#4ade80]/20 bg-black/40 backdrop-blur-sm">
           <h3 className="text-sm uppercase tracking-widest text-[#4ade80]/60 mb-12">Selected Work</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {[1, 2, 3, 4].map((i) => (
@@ -84,11 +80,8 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section
-          id="contact"
-          className="min-h-screen px-6 md:px-24 flex flex-col items-center justify-center text-center border-t border-[#4ade80]/10"
-        >
+        {/* Contact */}
+        <section id="contact" className="min-h-screen px-6 md:px-24 flex flex-col items-center justify-center text-center border-t border-[#4ade80]/20 bg-black/60 backdrop-blur-md">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -96,10 +89,7 @@ export default function PortfolioPage() {
             transition={{ duration: 1 }}
           >
             <h2 className="text-5xl md:text-9xl font-bold tracking-tighter mb-12 text-glow">Let's talk.</h2>
-            <a
-              href="mailto:hello@tanish.dev"
-              className="text-xl hover:text-white transition-colors border-b border-[#4ade80] pb-2"
-            >
+            <a href="mailto:hello@tanish.dev" className="text-xl hover:text-[#4ade80] transition-colors border-b border-[#4ade80] pb-2">
               hello@tanish.dev
             </a>
           </motion.div>
@@ -108,7 +98,7 @@ export default function PortfolioPage() {
 
       <div className="sr-only">
         <h1>Tanish Jagtap Portfolio</h1>
-        <p>Interactive Retro Terminal Portfolio showcasing web development and design skills.</p>
+        <p>Interactive Retro Terminal Portfolio</p>
       </div>
 
       <style jsx global>{`

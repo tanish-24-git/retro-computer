@@ -124,7 +124,43 @@
   }
 }
 
-/* Added custom terminal and 3D utility styles */
+/* ==========================================================================
+   FULL PORTFOLIO GRID - DARKER GREEN LINES EVERYWHERE
+   ========================================================================== */
+html, body {
+  background-image:
+    /* Large subtle pattern */
+    radial-gradient(circle at 25% 25%, rgba(74,222,128,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(74,222,128,0.05) 0%, transparent 50%),
+    /* Main grid lines - DARKER GREEN */
+    linear-gradient(rgba(74,222,128,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,222,128,0.08) 1px, transparent 1px),
+    /* Fine grid overlay */
+    linear-gradient(rgba(74,222,128,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,222,128,0.03) 1px, transparent 1px);
+  background-size: 200px 200px, 200px 200px, 80px 80px, 80px 80px, 40px 40px, 40px 40px;
+  background-position: 0 0, 0 0, 20px 20px, 20px 20px, 10px 10px, 10px 10px;
+}
+
+/* Fixed grid overlay for entire page */
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(74,222,128,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,222,128,0.035) 1px, transparent 1px);
+  background-size: 35px 35px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   TERMINAL EFFECTS (Keep all existing)
+   ========================================================================== */
 @layer utilities {
   .screen-glow {
     box-shadow: 0 0 20px oklch(0.85 0.15 150 / 0.2);
@@ -141,23 +177,13 @@
   }
 
   @keyframes blink {
-    from,
-    to {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
   }
 
-  /* Added scanline animation for the terminal */
   @keyframes scanline {
-    0% {
-      transform: translateY(-100%);
-    }
-    100% {
-      transform: translateY(100%);
-    }
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
   }
 
   .animate-scanline {
@@ -165,30 +191,7 @@
   }
 }
 
-/* Ensure smooth transitions for 3D canvas and sections */
-canvas {
-  touch-action: none;
-}
-
-/* Added smooth scroll behavior for the entire page */
-html {
-  scroll-behavior: smooth;
-  background-color: #050505;
-}
-
-body {
-  overflow-x: hidden;
-}
-/* TERMINAL GRID PATTERN */
-.terminal-grid {
-  background-size: 60px 60px;
-  background-image: 
-    linear-gradient(to right, rgba(74, 222, 128, 0.15) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(74, 222, 128, 0.15) 1px, transparent 1px);
-  mask-image: radial-gradient(circle at center, black, transparent 80%);
-}
-
-/* TERMINAL GLOW EFFECTS */
+/* Terminal glow classes */
 .terminal-electric-border {
   border: 2px solid rgba(74, 222, 128, 0.8);
   border-radius: 12px;
@@ -240,7 +243,6 @@ body {
   pointer-events: none;
 }
 
-/* ANIMATIONS */
 @keyframes electric-sparkle {
   0%, 100% { 
     box-shadow: 0 0 20px rgba(74, 222, 128, 0.4), inset 0 0 10px rgba(74, 222, 128, 0.2);
@@ -251,3 +253,20 @@ body {
     border-color: rgba(74, 222, 128, 1);
   }
 }
+
+/* Additional glow effects */
+.text-glow-green {
+  text-shadow: 0 0 12px rgba(74, 222, 128, 0.8);
+}
+
+.shadow-glow-green {
+  box-shadow: 0 0 30px rgba(74, 222, 128, 0.4);
+}
+
+/* Canvas and scroll */
+canvas { touch-action: none; }
+html { 
+  scroll-behavior: smooth; 
+  background-color: #050505;
+}
+body { overflow-x: hidden; }
