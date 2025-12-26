@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import RetroLoading from "@/components/retro-loading"
-import RetroTerminal from "@/components/retro-terminal"  // Direct import, no dynamic
+import RetroTerminal from "@/components/retro-terminal"
 
 export default function PortfolioPage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -11,7 +11,7 @@ export default function PortfolioPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 8000) // FORCED 8 seconds
+    }, 8000) // Exactly 8 seconds
     
     return () => clearTimeout(timer)
   }, [])
@@ -32,10 +32,13 @@ export default function PortfolioPage() {
         </div>
       </nav>
 
-      {/* Hero Terminal Section */}
+      {/* Hero Terminal Section - WITH GRID PATTERN */}
       <section className="relative h-screen pt-20 flex items-center justify-center overflow-hidden bg-black">
-        <div className="absolute inset-0 terminal-grid opacity-60 pointer-events-none" />
-        <div className="absolute inset-0 bg-radial-gradient(circle_at_center,transparent_0%,black_100%) pointer-events-none" />
+        {/* GRID PATTERN - Behind terminal */}
+        <div className="absolute inset-0 terminal-grid opacity-40 pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-radial-gradient(circle_at_center,transparent_0%,black_100%) pointer-events-none z-5" />
+        
+        {/* TERMINAL - Higher z-index */}
         <div className="relative z-10 w-full flex items-center justify-center px-4 md:px-20">
           <RetroTerminal />
         </div>
