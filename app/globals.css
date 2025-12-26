@@ -46,7 +46,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.145 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.85 0.15 150); /* A subtle terminal green */
+  --primary: oklch(0.85 0.15 150);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -124,149 +124,221 @@
   }
 }
 
-/* ==========================================================================
-   FULL PORTFOLIO GRID - DARKER GREEN LINES EVERYWHERE
-   ========================================================================== */
-html, body {
-  background-image:
-    /* Large subtle pattern */
-    radial-gradient(circle at 25% 25%, rgba(74,222,128,0.06) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(74,222,128,0.05) 0%, transparent 50%),
-    /* Main grid lines - DARKER GREEN */
-    linear-gradient(rgba(74,222,128,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74,222,128,0.08) 1px, transparent 1px),
-    /* Fine grid overlay */
-    linear-gradient(rgba(74,222,128,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74,222,128,0.03) 1px, transparent 1px);
-  background-size: 200px 200px, 200px 200px, 80px 80px, 80px 80px, 40px 40px, 40px 40px;
-  background-position: 0 0, 0 0, 20px 20px, 20px 20px, 10px 10px, 10px 10px;
+/* ===== AUTHENTIC CRT TV TERMINAL EFFECTS ===== */
+
+/* THICK DARK BEZEL WITH GREEN OUTER GLOW */
+.crt-bezel-outer {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    #1a1a1a 0%,
+    #0d0d0d 40%,
+    #000000 100%
+  );
+  box-shadow:
+    inset 0 0 80px rgba(0, 0, 0, 0.9),
+    inset 0 0 40px rgba(0, 0, 0, 0.8);
 }
 
-/* Fixed grid overlay for entire page */
-.grid-overlay {
-  position: fixed;
-  top: 0;
+/* SCREEN CONTAINER WITH CURVED EDGES */
+.crt-screen-container {
+  background: #0a1f1f;
+  box-shadow:
+    inset 0 0 100px rgba(0, 0, 0, 0.95),
+    inset 0 0 50px rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(74, 222, 128, 0.1);
+}
+
+/* FINE NOISE TEXTURE */
+.crt-noise {
+  position: relative;
+}
+
+.crt-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: noise-flicker 0.2s infinite;
+}
+
+@keyframes noise-flicker {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.12; }
+}
+
+/* MULTIPLE HORIZONTAL SCAN LINES AT DIFFERENT SPEEDS */
+.crt-scanline-1,
+.crt-scanline-2,
+.crt-scanline-3,
+.crt-scanline-4,
+.crt-scanline-5 {
+  position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(rgba(74,222,128,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74,222,128,0.035) 1px, transparent 1px);
-  background-size: 35px 35px;
+  height: 100%;
   pointer-events: none;
-  z-index: -1;
+  mix-blend-mode: screen;
+}
+
+/* Bright primary scan line */
+.crt-scanline-1 {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 48%,
+    rgba(74, 222, 128, 0.9) 50%,
+    transparent 52%,
+    transparent 100%
+  );
+  animation: scan-move-1 3.5s linear infinite;
   opacity: 0.85;
 }
 
-/* ==========================================================================
-   TERMINAL EFFECTS (Keep all existing)
-   ========================================================================== */
-@layer utilities {
-  .screen-glow {
-    box-shadow: 0 0 20px oklch(0.85 0.15 150 / 0.2);
-    border: 1px solid oklch(0.85 0.15 150 / 0.3);
-  }
-
-  .terminal-cursor {
-    display: inline-block;
-    width: 8px;
-    height: 1.2em;
-    background-color: currentColor;
-    margin-left: 4px;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    from, to { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-  @keyframes scanline {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
-  }
-
-  .animate-scanline {
-    animation: scanline 8s linear infinite;
-  }
+/* Medium bright scan line */
+.crt-scanline-2 {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 47%,
+    rgba(74, 222, 128, 0.6) 50%,
+    transparent 53%,
+    transparent 100%
+  );
+  animation: scan-move-2 5.2s linear infinite;
+  opacity: 0.7;
+  animation-delay: -1.2s;
 }
 
-/* Terminal glow classes */
-.terminal-electric-border {
-  border: 2px solid rgba(74, 222, 128, 0.8);
-  border-radius: 12px;
-  background: #050505;
-  animation: electric-sparkle 4s infinite;
-  position: relative;
-  overflow: hidden;
+/* Softer scan line */
+.crt-scanline-3 {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 46%,
+    rgba(74, 222, 128, 0.4) 50%,
+    transparent 54%,
+    transparent 100%
+  );
+  animation: scan-move-3 7.8s linear infinite;
+  opacity: 0.6;
+  animation-delay: -2.5s;
 }
 
-.terminal-electric-border::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, transparent, rgba(74, 222, 128, 0.1), transparent);
-  z-index: -1;
-  animation: scanline 4s linear infinite;
+/* Fast subtle scan line */
+.crt-scanline-4 {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 48.5%,
+    rgba(74, 222, 128, 0.5) 50%,
+    transparent 51.5%,
+    transparent 100%
+  );
+  animation: scan-move-4 2.8s linear infinite;
+  opacity: 0.5;
+  animation-delay: -0.8s;
 }
 
-.terminal-back-glow {
-  box-shadow: 
-    0 0 100px 10px rgba(74, 222, 128, 0.15),
-    0 0 50px 5px rgba(74, 222, 128, 0.1),
-    inset 0 0 40px rgba(74, 222, 128, 0.05);
+/* Very slow wide scan line */
+.crt-scanline-5 {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 45%,
+    rgba(74, 222, 128, 0.3) 50%,
+    transparent 55%,
+    transparent 100%
+  );
+  animation: scan-move-5 9.5s linear infinite;
+  opacity: 0.4;
+  animation-delay: -4s;
 }
 
-.terminal-3d-border {
-  border: 1px solid rgba(74, 222, 128, 0.3);
-  border-radius: 20px;
-  box-shadow: 
-    0 1px 1px rgba(0,0,0,0.15),
-    0 2px 2px rgba(0,0,0,0.15),
-    0 4px 4px rgba(0,0,0,0.15),
-    0 8px 8px rgba(0,0,0,0.15),
-    0 0 20px rgba(74, 222, 128, 0.2);
-  background: linear-gradient(135deg, #0a0a0a 0%, #050505 100%);
-  position: relative;
+@keyframes scan-move-1 {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
-.terminal-bezel::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border: 2px solid rgba(74, 222, 128, 0.1);
-  border-radius: 24px;
-  z-index: -1;
-  pointer-events: none;
+@keyframes scan-move-2 {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
-@keyframes electric-sparkle {
-  0%, 100% { 
-    box-shadow: 0 0 20px rgba(74, 222, 128, 0.4), inset 0 0 10px rgba(74, 222, 128, 0.2);
-    border-color: rgba(74, 222, 128, 0.8);
-  }
-  10% { 
-    box-shadow: 0 0 40px rgba(74, 222, 128, 0.7), inset 0 0 20px rgba(74, 222, 128, 0.4);
-    border-color: rgba(74, 222, 128, 1);
-  }
+@keyframes scan-move-3 {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
-/* Additional glow effects */
-.text-glow-green {
-  text-shadow: 0 0 12px rgba(74, 222, 128, 0.8);
+@keyframes scan-move-4 {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
-.shadow-glow-green {
-  box-shadow: 0 0 30px rgba(74, 222, 128, 0.4);
+@keyframes scan-move-5 {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
-/* Canvas and scroll */
+/* CURVED SCREEN GLASS EFFECT WITH BOWED EDGES */
+.crt-glass-curve {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(148, 163, 184, 0.15), transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(148, 163, 184, 0.12), transparent 60%),
+    radial-gradient(ellipse at 0% 50%, rgba(148, 163, 184, 0.1), transparent 60%),
+    radial-gradient(ellipse at 100% 50%, rgba(148, 163, 184, 0.1), transparent 60%);
+  box-shadow:
+    inset 0 0 120px rgba(15, 23, 42, 0.6),
+    inset 0 0 60px rgba(0, 0, 0, 0.8);
+}
+
+/* HEAVY VIGNETTE FOR CURVED CORNERS */
+.crt-vignette-heavy {
+  background:
+    radial-gradient(
+      ellipse at 50% 50%,
+      transparent 0%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.3) 60%,
+      rgba(0, 0, 0, 0.7) 80%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+  mix-blend-mode: multiply;
+}
+
+/* TERMINAL TEXT GLOW */
+.terminal-text-glow {
+  text-shadow: 
+    0 0 10px rgba(74, 222, 128, 0.8),
+    0 0 20px rgba(74, 222, 128, 0.4),
+    0 0 30px rgba(74, 222, 128, 0.2);
+}
+
+/* TERMINAL CURSOR */
+.terminal-cursor-block {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: #4ade80;
+  margin-left: 2px;
+  animation: cursor-blink 1s step-end infinite;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
+}
+
+@keyframes cursor-blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* LEGACY STYLES (keeping for compatibility) */
+html, body {
+  background-color: #000000;
+}
+
 canvas { touch-action: none; }
-html { 
-  scroll-behavior: smooth; 
-  background-color: #050505;
+html {
+  scroll-behavior: smooth;
 }
 body { overflow-x: hidden; }
