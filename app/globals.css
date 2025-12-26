@@ -300,10 +300,10 @@
     radial-gradient(
       ellipse at 50% 50%,
       transparent 0%,
-      transparent 40%,
-      rgba(0, 0, 0, 0.3) 60%,
-      rgba(0, 0, 0, 0.7) 80%,
-      rgba(0, 0, 0, 0.95) 100%
+      transparent 35%,
+      rgba(0, 0, 0, 0.4) 55%,
+      rgba(0, 0, 0, 0.8) 75%,
+      rgba(0, 0, 0, 0.98) 100%
     );
   mix-blend-mode: multiply;
 }

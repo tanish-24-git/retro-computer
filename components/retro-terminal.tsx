@@ -112,19 +112,19 @@ export default function RetroTerminal() {
   }
 
   return (
-    <div className="w-full h-screen overflow-hidden" onClick={() => inputRef.current?.focus()}>
+    <div className="w-full h-screen overflow-hidden bg-black grid-background" onClick={() => inputRef.current?.focus()}>
       {/* CRT SCREEN WITH EFFECTS */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
-        className="relative w-full h-full bg-[#0a1f1f]"
+        className="relative w-full h-full bg-[#0a1f1f] rounded-[60px] md:rounded-[80px] lg:rounded-[100px]"
       >
         {/* FINE NOISE TEXTURE */}
-        <div className="absolute inset-0 crt-noise" />
+        <div className="absolute inset-0 crt-noise rounded-[60px] md:rounded-[80px] lg:rounded-[100px]" />
         
         {/* MULTIPLE HORIZONTAL SCAN LINES AT DIFFERENT SPEEDS */}
-        <div className="absolute inset-0 pointer-events-none z-10">
+        <div className="absolute inset-0 pointer-events-none z-10 rounded-[60px] md:rounded-[80px] lg:rounded-[100px]">
           <div className="crt-scanline-1" />
           <div className="crt-scanline-2" />
           <div className="crt-scanline-3" />
@@ -133,10 +133,10 @@ export default function RetroTerminal() {
         </div>
         
         {/* CURVED SCREEN GLASS EFFECT */}
-        <div className="absolute inset-0 pointer-events-none crt-glass-curve z-20" />
+        <div className="absolute inset-0 pointer-events-none crt-glass-curve z-20 rounded-[60px] md:rounded-[80px] lg:rounded-[100px]" />
         
         {/* VIGNETTE FOR EDGES */}
-        <div className="absolute inset-0 pointer-events-none crt-vignette-heavy z-20" />
+        <div className="absolute inset-0 pointer-events-none crt-vignette-heavy z-20 rounded-[60px] md:rounded-[80px] lg:rounded-[100px]" />
 
         {/* FLOATING RETRO IMAGE */}
         <motion.div
