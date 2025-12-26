@@ -1,16 +1,25 @@
 "use client"
 
-import dynamic from "next/dynamic"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-
-const RetroTerminal = dynamic(() => import("@/components/retro-terminal"), {
-  ssr: false,
-  loading: () => <RetroLoading />
-})
-
 import RetroLoading from "@/components/retro-loading"
+import RetroTerminal from "@/components/retro-terminal"  // Direct import, no dynamic
 
 export default function PortfolioPage() {
+  const [isLoading, setIsLoading] = useState(true)
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 8000) // FORCED 8 seconds
+    
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (isLoading) {
+    return <RetroLoading />
+  }
+
   return (
     <div className="relative w-full bg-black text-[#4ade80] font-mono selection:bg-[#4ade80] selection:text-black">
       {/* Navigation */}

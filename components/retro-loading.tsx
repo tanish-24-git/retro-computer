@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const LOADING_STEPS = [
@@ -17,24 +17,31 @@ const LOADING_STEPS = [
 export default function RetroLoading() {
   const [progress, setProgress] = useState(0)
   const [stepIndex, setStepIndex] = useState(0)
+  const intervalRef = useRef<NodeJS.Timeout>()
 
   useEffect(() => {
-    const duration = 8000 // 8 seconds total (change to 5000 for 5 seconds)
+    const duration = 8000 // Exactly 8 seconds
     const interval = 30
-    const increment = (100 / (duration / interval))
+    const increment = 100 / (duration / interval)
 
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        const next = prev + increment
-        if (next >= 100) {
-          clearInterval(timer)
-          return 100
-        }
-        return next
-      })
-    }, interval)
-
-    return () => clearInterval(timer)
+    const startTime = Date.now()
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime
+      const calculatedProgress = Math.min((elapsed / duration) * 100, 100)
+      
+      setProgress(calculatedProgress)
+      
+      if (calculatedProgress < 100) {
+        requestAnimationFrame(animate)
+      }
+    }
+    
+    requestAnimationFrame(animate)
+    
+    return () => {
+      // Cleanup handled by RAF naturally
+    }
   }, [])
 
   useEffect(() => {
@@ -62,9 +69,8 @@ export default function RetroLoading() {
           <div className="h-6 w-full border-2 border-[#4ade80]/30 p-1.5 bg-[#050505]">
             <motion.div 
               className="h-full bg-[#4ade80] shadow-[0_0_20px_#4ade80]"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ ease: "linear" }}
+              style={{ width: `${progress}%` }}  // Direct style binding - NO animate!
+              initial={false}
             />
           </div>
         </div>
