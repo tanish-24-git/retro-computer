@@ -114,7 +114,7 @@ export default function RetroTerminal() {
         initial={{ rotateX: 5, y: 20, opacity: 0 }}
         animate={{ rotateX: 0, y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="terminal-bezel w-full max-w-6xl h-[80vh] flex flex-col relative terminal-electric-border"
+        className="terminal-bezel w-full max-w-7xl aspect-[1.618/1] h-auto min-h-[70vh] flex flex-col relative terminal-electric-border terminal-back-glow"
         onClick={() => inputRef.current?.focus()}
       >
         {/* CRT Effects */}

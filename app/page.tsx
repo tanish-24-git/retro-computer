@@ -5,12 +5,10 @@ import { motion } from "framer-motion"
 
 const RetroTerminal = dynamic(() => import("@/components/retro-terminal"), {
   ssr: false,
-  loading: () => (
-    <div className="w-full h-screen bg-black flex items-center justify-center font-mono text-[#4ade80]">
-      INITIALIZING_SYSTEM...
-    </div>
-  )
+  loading: () => <RetroLoading />
 })
+
+import RetroLoading from "@/components/retro-loading"
 
 export default function PortfolioPage() {
   return (

@@ -238,4 +238,9 @@
     z-index: -1;
     animation: scanline 4s linear infinite;
   }
+
+  .terminal-back-glow {
+    box-shadow: 0 0 100px 10px rgba(74, 222, 128, 0.15),
+                0 0 50px 5px rgba(74, 222, 128, 0.1);
+  }
 }
