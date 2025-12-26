@@ -358,6 +358,37 @@
     0 0;
 }
 
+/* GRID BACKGROUND FULL - Covers entire page */
+.grid-background-full {
+  min-height: 100vh;
+  background-color: #000000;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(74, 222, 128, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(74, 222, 128, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(74, 222, 128, 0.02) 0%, transparent 70%),
+    linear-gradient(rgba(74, 222, 128, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
+  background-size: 
+    400px 400px,
+    400px 400px,
+    100% 100%,
+    60px 60px,
+    60px 60px,
+    20px 20px,
+    20px 20px;
+  background-position: 
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  background-attachment: fixed;
+}
+
 /* LEGACY STYLES (keeping for compatibility) */
 html, body {
   background-color: #000000;

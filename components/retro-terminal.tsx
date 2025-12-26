@@ -112,19 +112,19 @@ export default function RetroTerminal() {
   }
 
   return (
-    <div className="w-full h-screen overflow-hidden grid-background" onClick={() => inputRef.current?.focus()}>
+    <div className="w-full h-screen overflow-hidden bg-black" onClick={() => inputRef.current?.focus()}>
       {/* CRT SCREEN WITH EFFECTS */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
-        className="relative w-full h-full bg-[#0a1f1f] rounded-[60px] md:rounded-[80px] lg:rounded-[100px]"
+        className="relative w-full h-full bg-[#0a1f1f]"
       >
         {/* FINE NOISE TEXTURE */}
-        <div className="absolute inset-0 crt-noise rounded-[60px] md:rounded-[80px] lg:rounded-[100px]" />
+        <div className="absolute inset-0 crt-noise" />
         
         {/* MULTIPLE HORIZONTAL SCAN LINES AT DIFFERENT SPEEDS */}
-        <div className="absolute inset-0 pointer-events-none z-10 rounded-[60px] md:rounded-[80px] lg:rounded-[100px]">
+        <div className="absolute inset-0 pointer-events-none z-10">
           <div className="crt-scanline-1" />
           <div className="crt-scanline-2" />
           <div className="crt-scanline-3" />
@@ -133,39 +133,38 @@ export default function RetroTerminal() {
         </div>
         
         {/* CURVED SCREEN GLASS EFFECT */}
-        <div className="absolute inset-0 pointer-events-none crt-glass-curve z-20 rounded-[60px] md:rounded-[80px] lg:rounded-[100px]" />
+        <div className="absolute inset-0 pointer-events-none crt-glass-curve z-20" />
         
         {/* VIGNETTE FOR EDGES */}
-        <div className="absolute inset-0 pointer-events-none crt-vignette-heavy z-20 rounded-[60px] md:rounded-[80px] lg:rounded-[100px]" />
+        <div className="absolute inset-0 pointer-events-none crt-vignette-heavy z-20" />
 
-        {/* FLOATING RETRO IMAGE */}
+        {/* FLOATING RETRO IMAGE - BOTTOM RIGHT CORNER */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: -20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9, x: 20, y: 20 }}
+          animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
           transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-          className="absolute top-8 right-8 md:top-12 md:right-12 lg:top-16 lg:right-16 z-40 
+          className="absolute bottom-6 right-6 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 z-40 
                      pointer-events-none group"
         >
           <div className="relative">
             {/* Green glow behind image */}
-            <div className="absolute inset-0 bg-[#4ade80] blur-2xl opacity-30 scale-110 
-                            group-hover:opacity-50 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-[#4ade80] blur-3xl opacity-40 scale-125 
+                            group-hover:opacity-60 transition-opacity duration-500" />
             
             {/* Image with retro CRT effects */}
             <img
               src="/terminal-image.png"
               alt="Terminal Visual"
-              className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 
+              className="relative w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 
                          object-cover rounded-2xl
-                         opacity-70 hover:opacity-95 transition-all duration-500
-                         shadow-[0_0_40px_rgba(74,222,128,0.4)]
-                         border-2 border-[#4ade80]/30
-                         group-hover:border-[#4ade80]/60
-                         group-hover:shadow-[0_0_60px_rgba(74,222,128,0.6)]
-                         saturate-50 contrast-125 brightness-110
-                         hue-rotate-[10deg]"
+                         opacity-60 hover:opacity-90 transition-all duration-500
+                         shadow-[0_0_50px_rgba(74,222,128,0.5)]
+                         border-2 border-[#4ade80]/40
+                         group-hover:border-[#4ade80]/70
+                         group-hover:shadow-[0_0_70px_rgba(74,222,128,0.7)]
+                         saturate-50 contrast-125 brightness-110"
               style={{
-                filter: 'sepia(0.2) hue-rotate(10deg) saturate(0.8) contrast(1.2) brightness(1.1)',
+                filter: 'sepia(0.3) hue-rotate(10deg) saturate(0.7) contrast(1.3) brightness(1.15)',
                 mixBlendMode: 'screen'
               }}
               onError={(e) => {
@@ -175,8 +174,8 @@ export default function RetroTerminal() {
             
             {/* Scan line overlay on image */}
             <div className="absolute inset-0 pointer-events-none rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#4ade80]/10 to-transparent 
-                              animate-pulse opacity-50" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#4ade80]/15 to-transparent 
+                              animate-pulse opacity-60" />
             </div>
           </div>
         </motion.div>
@@ -186,7 +185,9 @@ export default function RetroTerminal() {
           {/* TERMINAL LOGS */}
           <div
             ref={containerRef}
-            className="flex-1 overflow-y-auto space-y-3 scroll-smooth p-8 md:p-12 lg:p-16
+            className="flex-1 overflow-y-auto space-y-4 scroll-smooth 
+                       p-6 md:p-10 lg:p-14
+                       pb-32 md:pb-40 lg:pb-48
                        selection:bg-[#4ade80]/80 selection:text-black"
           >
             <AnimatePresence>
@@ -200,10 +201,10 @@ export default function RetroTerminal() {
                 >
                   {log.type === "command" ? (
                     <div className="flex gap-3">
-                      <span className="text-[#4ade80]/60 shrink-0 font-mono text-sm md:text-base">
+                      <span className="text-[#4ade80]/60 shrink-0 font-mono text-sm md:text-base lg:text-lg">
                         tanish@os:~$
                       </span>
-                      <span className="font-bold text-[#4ade80] terminal-text-glow">
+                      <span className="font-bold text-[#4ade80] terminal-text-glow text-base md:text-lg lg:text-xl">
                         {log.content}
                       </span>
                     </div>
@@ -211,12 +212,12 @@ export default function RetroTerminal() {
                     <div className="pl-12 md:pl-16 lg:pl-20">
                       {Array.isArray(log.content) ? (
                         log.content.map((line, j) => (
-                          <div key={j} className="text-[#4ade80]/90 font-mono">
+                          <div key={j} className="text-[#4ade80]/90 font-mono text-sm md:text-base lg:text-lg">
                             {line}
                           </div>
                         ))
                       ) : (
-                        <div className="text-[#4ade80]/90 font-mono">{log.content}</div>
+                        <div className="text-[#4ade80]/90 font-mono text-sm md:text-base lg:text-lg">{log.content}</div>
                       )}
                     </div>
                   )}
@@ -227,9 +228,9 @@ export default function RetroTerminal() {
             {!isBooting && (
               <form
                 onSubmit={handleSubmit}
-                className="flex gap-3 items-center pt-2"
+                className="flex gap-3 items-center pt-4"
               >
-                <span className="text-[#4ade80]/60 shrink-0 font-mono text-sm md:text-base">
+                <span className="text-[#4ade80]/60 shrink-0 font-mono text-sm md:text-base lg:text-lg">
                   tanish@os:~$
                 </span>
                 <input
