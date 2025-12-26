@@ -114,7 +114,7 @@ export default function RetroTerminal() {
         initial={{ rotateX: 5, y: 20, opacity: 0 }}
         animate={{ rotateX: 0, y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="terminal-bezel w-full max-w-6xl h-[80vh] flex flex-col relative"
+        className="terminal-bezel w-full max-w-6xl h-[80vh] flex flex-col relative terminal-electric-border"
         onClick={() => inputRef.current?.focus()}
       >
         {/* CRT Effects */}
@@ -122,6 +122,16 @@ export default function RetroTerminal() {
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(74,222,128,0.03)_0%,transparent_100%)] z-10" />
         <div className="absolute inset-0 pointer-events-none animate-scanline bg-[linear-gradient(transparent_0%,rgba(74,222,128,0.01)_50%,transparent_100%)] z-10 h-20 w-full" />
         
+        {/* Floating User Image */}
+        <div className="absolute top-8 right-8 z-20 pointer-events-none opacity-40 hover:opacity-100 transition-opacity duration-500">
+          <img 
+            src="/terminal-image.png" 
+            alt="Terminal Visual" 
+            className="w-32 md:w-48 h-auto grayscale sepia hue-rotate-[90deg] brightness-125"
+            onError={(e) => (e.currentTarget.style.display = 'none')}
+          />
+        </div>
+
         <div 
           ref={containerRef}
           className="flex-1 overflow-y-auto space-y-2 scroll-smooth animate-flicker relative z-0 p-6 md:p-12 mb-8 selection:bg-[#4ade80] selection:text-black"
