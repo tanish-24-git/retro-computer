@@ -48,7 +48,7 @@ export default function HeroScene() {
       >
         <Canvas
           shadows
-          camera={{ position: [0, 0.6, 3], fov: 40 }}
+          camera={{ position: [0, 0.5, 4], fov: 35 }}
           gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping }}
         >
           <ambientLight intensity={1.5} />
