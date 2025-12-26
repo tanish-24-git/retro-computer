@@ -109,12 +109,13 @@ export default function RetroTerminal() {
   }
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center p-4 md:p-10 perspective-1000">
+    <div className="relative w-full h-full flex flex-col items-center justify-center p-4 md:p-6 perspective-1000">
       <motion.div 
-        initial={{ rotateX: 5, y: 20, opacity: 0 }}
-        animate={{ rotateX: 0, y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="terminal-bezel w-full max-w-7xl aspect-[1.618/1] h-auto min-h-[70vh] flex flex-col relative terminal-electric-border terminal-back-glow"
+        initial={{ rotateX: 10, rotateY: -5, y: 50, opacity: 0 }}
+        animate={{ rotateX: 5, rotateY: 0, y: 0, opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="terminal-bezel w-full max-w-7xl aspect-[1.618/1] h-auto min-h-[70vh] flex flex-col relative terminal-electric-border terminal-back-glow terminal-3d-border shadow-2xl overflow-hidden"
+        style={{ transformStyle: "preserve-3d" }}
         onClick={() => inputRef.current?.focus()}
       >
         {/* CRT Effects */}

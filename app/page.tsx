@@ -33,8 +33,12 @@ export default function PortfolioPage() {
       </nav>
 
       {/* Hero Terminal Section */}
-      <section className="h-screen pt-20">
-        <RetroTerminal />
+      <section className="relative h-screen pt-20 flex items-center justify-center overflow-hidden bg-black">
+        <div className="absolute inset-0 terminal-grid opacity-60 pointer-events-none" />
+        <div className="absolute inset-0 bg-radial-gradient(circle_at_center,transparent_0%,black_100%) pointer-events-none" />
+        <div className="relative z-10 w-full flex items-center justify-center px-4 md:px-20">
+          <RetroTerminal />
+        </div>
       </section>
 
       <main className="relative">
