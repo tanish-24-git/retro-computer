@@ -332,6 +332,32 @@
   50% { opacity: 0; }
 }
 
+/* GRID BACKGROUND */
+.grid-background {
+  background-color: #000000;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(74, 222, 128, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(74, 222, 128, 0.03) 0%, transparent 50%),
+    linear-gradient(rgba(74, 222, 128, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(74, 222, 128, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.02) 1px, transparent 1px);
+  background-size: 
+    300px 300px,
+    300px 300px,
+    60px 60px,
+    60px 60px,
+    20px 20px,
+    20px 20px;
+  background-position: 
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+}
+
 /* LEGACY STYLES (keeping for compatibility) */
 html, body {
   background-color: #000000;

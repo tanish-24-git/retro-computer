@@ -112,7 +112,7 @@ export default function RetroTerminal() {
   }
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-black grid-background" onClick={() => inputRef.current?.focus()}>
+    <div className="w-full h-screen overflow-hidden grid-background" onClick={() => inputRef.current?.focus()}>
       {/* CRT SCREEN WITH EFFECTS */}
       <motion.div
         initial={{ opacity: 0 }}
