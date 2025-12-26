@@ -41,23 +41,23 @@ export function LaptopModel({ progress }: { progress: number }) {
 
     // Rotation: 0 -> 30 degrees right on Y axis
     group.current.rotation.y = THREE.MathUtils.lerp(0, Math.PI / 6, progress)
-    group.current.rotation.x = THREE.MathUtils.lerp(0, -Math.PI / 12, progress)
+    group.current.rotation.x = THREE.MathUtils.lerp(0, -Math.PI / 32, progress)
 
     group.current.scale.setScalar(THREE.MathUtils.lerp(1.2, 0.9, progress))
 
-    // Lid Animation: Starts open (100deg)
-    screenRef.current.rotation.x = THREE.MathUtils.lerp(-Math.PI / 1.8, -Math.PI / 1.1, progress)
+    // Lid Animation: Starts almost closed (-Math.PI / 1.3), ends at natural open angle (-Math.PI / 2.2)
+    screenRef.current.rotation.x = THREE.MathUtils.lerp(-Math.PI / 1.3, -Math.PI / 2.2, progress)
   })
 
   return (
     <group ref={group}>
       {/* Laptop Base */}
       <mesh material={materials.body} position={[0, -0.05, 0]}>
-        <boxGeometry args={[4.5, 0.15, 3]} />
+        <boxGeometry args={[4.5, 0.15, 2.4]} />
       </mesh>
 
       {/* Laptop Screen (Top Lid) */}
-      <group ref={screenRef} position={[0, 0.02, -1.45]}>
+      <group ref={screenRef} position={[0, 0.02, -1.1]}>
         {/* Lid Outer */}
         <mesh material={materials.body} position={[0, 1.45, 0]}>
           <boxGeometry args={[4.5, 2.9, 0.08]} />
